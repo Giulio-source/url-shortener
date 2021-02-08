@@ -4,9 +4,52 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
     <title>URL-Shortener</title>
   </head>
   <body>
-    <h1>Welcome</h1>
+    <div class="container">
+      <h1>URL Shrinker</h1>
+      <form action="/shortUrls" method="POST" class="my-4 form-inline">
+        <label for="url-text" class="sr-only">URL</label>
+        <input
+          required
+          placeholder="URL"
+          class="col form-control mr-2"
+          id="fullUrl"
+          name="fullUrl"
+          type="url"
+        />
+        <button class="btn btn-info" type="submit">Shrink it</button>
+      </form>
+
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Full Url</th>
+            <th scope="col">Short Url</th>
+            <th scope="col">Click</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% shortUrls.forEach(url => { %>
+          <tr>
+            <td>
+              <a href="<%= url.full %> "><%= url.full %></a>
+            </td>
+            <td>
+              <a href="<%= url.short %>"><%= url.short %></a>
+            </td>
+            <td><%= url.clicks %></td>
+          </tr>
+          <%});%>
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>
